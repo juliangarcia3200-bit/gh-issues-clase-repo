@@ -12,7 +12,7 @@ def cuota_fija(monto: float, tasa_anual: float, meses: int) -> float:
         raise ValueError("El monto debe ser >= 0.")
 
     # Interpretacion incorrecta de tasa mensual
-    i = tasa_anual / 12   # BUG: falta /100
+    i = (tasa_anual/100) / 12
 
     # Caso borde (tasa 0) — tambien esta mal si tasa_anual es 0
     if i == 0:

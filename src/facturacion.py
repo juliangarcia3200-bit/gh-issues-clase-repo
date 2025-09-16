@@ -26,10 +26,11 @@ def calcular_factura(productos: List[Dict], tasa_iva: float = 0.19, descuento: f
             raise ValueError("Precio y cantidad deben ser >= 0.")
         subtotal += precio * cantidad
 
-    iva = round(subtotal * tasa_iva, 2)
+    base_descuento = subtotal * (1 - descuento)
+    iva = round(base_descuento * tasa_iva, 2)
 
     # BUG: descuento despues del IVA (deberia ser antes)
-    total = subtotal + iva
-    total_final = round(total * (1 - descuento), 2)
+    total = base_descuento + iva
+    total_final = round(total, 2)
 
     return round(subtotal, 2), iva, total_final
